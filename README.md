@@ -5,7 +5,7 @@ API REST en Laravel para gestionar productos y sus precios en distintas divisas.
 ## Instalación
 
 ```bash
-git clone <URL_DEL_REPO>
+git clone https://github.com/Javistella77/prueba-backend
 cd prueba-backend
 composer install
 cp .env.example .env
