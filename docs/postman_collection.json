@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "Prueba Backend - Productos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8000/api" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"]
+          }
+        }
+      ],
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@test.com\",\n  \"password\": \"password\"\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Listar productos",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/products" }
+    },
+    {
+      "name": "Crear producto",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/products",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Teclado\",\n  \"description\": \"Teclado mecánico\",\n  \"price\": 100,\n  \"currency_id\": 1,\n  \"tax_cost\": 21,\n  \"manufacturing_cost\": 40\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Ver producto",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/products/1" }
+    },
+    {
+      "name": "Actualizar producto",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": "{{baseUrl}}/products/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Teclado inalámbrico\",\n  \"price\": 120\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Eliminar producto",
+      "request": { "method": "DELETE", "header": [], "url": "{{baseUrl}}/products/1" }
+    },
+    {
+      "name": "Listar precios del producto",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/products/1/prices" }
+    },
+    {
+      "name": "Crear precio del producto",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/products/1/prices",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"currency_id\": 2,\n  \"price\": 92\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    }
+  ]
+}
